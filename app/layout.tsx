@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Breddy from "@/app/components/Breddy";
+import BreddyLoader from "@/app/components/BreddyLoader";
 
 export const metadata: Metadata = {
   title: "BoardReady — CHRO Board Seat Preparation",
@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="h-full">
       <body className="min-h-full flex flex-col antialiased">
         {children}
-        <Breddy />
+        <BreddyLoader />
       </body>
     </html>
   );
