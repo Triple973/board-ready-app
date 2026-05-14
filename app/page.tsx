@@ -75,6 +75,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Three Steps to Board-Ready */}
+      <section className="bg-gradient-to-br from-indigo-950 to-indigo-800 px-6 py-16 text-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold tracking-tight">Your Three-Step Journey to the Boardroom</h2>
+            <p className="text-indigo-300 mt-2 text-sm max-w-xl mx-auto">BoardReady maps the full path — from knowing your gaps to sitting in the seat</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                step: "01", phase: "Educate", icon: "🎓", href: "/educate",
+                desc: "Master the six governance modules that separate board-ready CHROs from their peers. Build the language, literacy, and confidence that nominating committees demand.",
+                tags: ["6 Curriculum Modules", "Governance Literacy", "Board Language"],
+              },
+              {
+                step: "02", phase: "Convene", icon: "🤝", href: "/convene",
+                desc: "Connect with active directors, search firm partners, and peer CHRO candidates through monthly roundtables and the annual CHRO Board Readiness Summit.",
+                tags: ["Monthly Roundtables", "Annual Summit", "Search Firm Access"],
+              },
+              {
+                step: "03", phase: "Access", icon: "🚀", href: "/access",
+                desc: "Convert your preparation and relationships into a seat. 1:1 BetterUp coaching, warm search firm introductions, and your finalized board narrative guide.",
+                tags: ["1:1 Coaching", "Search Firm Intros", "Board Narrative"],
+              },
+            ].map((s) => (
+              <Link key={s.phase} href={s.href} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 hover:shadow-xl transition-all group block">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xl">{s.icon}</div>
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-indigo-400">Step {s.step}</div>
+                    <div className="text-white font-extrabold text-lg">{s.phase}</div>
+                  </div>
+                </div>
+                <p className="text-indigo-200 text-sm leading-relaxed mb-4">{s.desc}</p>
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {s.tags.map(tag => (
+                    <span key={tag} className="text-[10px] font-semibold text-indigo-300 bg-white/5 border border-white/10 rounded-full px-2.5 py-0.5">{tag}</span>
+                  ))}
+                </div>
+                <div className="text-indigo-400 text-xs font-semibold group-hover:text-indigo-200 transition-colors">Explore Phase →</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* The 5 Dimensions */}
       <section className="bg-slate-50 px-6 py-16">
         <div className="max-w-5xl mx-auto">

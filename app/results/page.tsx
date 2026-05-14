@@ -72,7 +72,7 @@ function RadarChart({ scores }: { scores: number[] }) {
         const lp = labelPoint(i);
         const lines = label.split("\n");
         return (
-          <text key={i} x={lp.x} y={lp.y} textAnchor="middle" fontSize="10" fontWeight="600" fill="#374151">
+          <text key={i} x={lp.x} y={lp.y} textAnchor="middle" fontSize="10" fontWeight="700" fill="white">
             {lines.map((line, li) => (
               <tspan key={li} x={lp.x} dy={li === 0 ? (lines.length > 1 ? "-0.5em" : "0.35em") : "1.2em"}>{line}</tspan>
             ))}
@@ -81,9 +81,9 @@ function RadarChart({ scores }: { scores: number[] }) {
       })}
       {/* Legend */}
       <rect x="10" y="295" width="10" height="3" fill="rgba(204,2,84,0.9)" rx="2" />
-      <text x="25" y="299" fontSize="9" fill="#6b7280" fontWeight="500">Your Score</text>
+      <text x="25" y="299" fontSize="9" fill="white" fontWeight="700">Your Score</text>
       <line x1="100" y1="297" x2="110" y2="297" stroke="rgba(16,185,129,0.6)" strokeWidth="1.5" strokeDasharray="3 2" />
-      <text x="115" y="299" fontSize="9" fill="#6b7280" fontWeight="500">Benchmark (12/16)</text>
+      <text x="115" y="299" fontSize="9" fill="white" fontWeight="700">Benchmark (12/16)</text>
     </svg>
   );
 }
@@ -216,6 +216,18 @@ export default function ResultsPage() {
     red: "bg-red-400",
   };
 
+  const MODULE_MAP = [
+    "Module 2: Governance & Legal Duties",
+    "Module 3: Financial Literacy for Board Directors",
+    "Module 4: Strategy, Risk & CEO Oversight",
+    "Module 5: Human Capital, ESG & Compensation",
+    "Module 6: Board Dynamics & Personal Positioning",
+  ];
+  const priorityDims = [...dimScores]
+    .map((s, i) => ({ score: s, index: i }))
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 2);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -330,6 +342,36 @@ export default function ResultsPage() {
                   dangerouslySetInnerHTML={{ __html: `<p>${renderMarkdown(analysis)}</p>` }}
                 />
               )}
+            </div>
+          </section>
+
+          {/* Priority Learning Path */}
+          <section className="bg-gradient-to-br from-indigo-950 to-indigo-900 rounded-2xl px-6 py-6 text-white">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="text-xl">🎯</span>
+              <div>
+                <h2 className="text-lg font-extrabold">Your Priority Learning Path</h2>
+                <p className="text-indigo-300 text-xs">Your two lowest-scoring dimensions — focus here first to move the needle fastest</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {priorityDims.map((item, ri) => (
+                <div key={item.index} className="bg-white/10 border border-white/10 rounded-xl p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-5 h-5 rounded-full bg-indigo-400 text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0">{ri + 1}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wide text-indigo-300">Priority {ri + 1}</span>
+                  </div>
+                  <div className="text-sm font-extrabold mb-1">{DIM_ICONS[item.index]} {DIMENSIONS[item.index]}</div>
+                  <div className="text-indigo-300 text-xs mb-4">{item.score}/16 — {Math.round((item.score / 16) * 100)}% — your highest-leverage gap</div>
+                  <div className="bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 mb-4">
+                    <div className="text-[10px] font-bold uppercase tracking-wide text-indigo-400 mb-0.5">Recommended Module</div>
+                    <div className="text-sm font-semibold text-white">{MODULE_MAP[item.index]}</div>
+                  </div>
+                  <Link href="/educate" className="inline-flex items-center gap-1.5 bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all">
+                    Study This Module →
+                  </Link>
+                </div>
+              ))}
             </div>
           </section>
 

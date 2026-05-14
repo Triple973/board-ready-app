@@ -137,6 +137,19 @@ export default function DashboardPage() {
   const progressPct = Math.round((completedMilestones / MILESTONES.length) * 100);
   const scorePercent = (f["Score Percent"] as number) ?? 0;
 
+  const DIM_SCORE_KEYS = [
+    { key: "Governance Score", label: "Governance & Fiduciary", module: "Module 2: Governance & Legal Duties", icon: "⚖️" },
+    { key: "Financial Score", label: "Financial Oversight", module: "Module 3: Financial Literacy for Board Directors", icon: "📊" },
+    { key: "Strategy Score", label: "Strategy & Risk", module: "Module 4: Strategy, Risk & CEO Oversight", icon: "♟️" },
+    { key: "Human Capital Score", label: "Human Capital & ESG", module: "Module 5: Human Capital, ESG & Compensation", icon: "👥" },
+    { key: "Board Dynamics Score", label: "Board Dynamics", module: "Module 6: Board Dynamics & Personal Positioning", icon: "🌟" },
+  ];
+  const lowestDim = DIM_SCORE_KEYS.reduce(
+    (min, d) => ((f[d.key] as number ?? 0) < (f[min.key] as number ?? 0) ? d : min),
+    DIM_SCORE_KEYS[0]
+  );
+  const nextMilestone = MILESTONES.find(m => !f[m.field]);
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
@@ -242,6 +255,45 @@ export default function DashboardPage() {
       {/* Milestones */}
       <div className="flex-1 bg-slate-50 px-4 py-10">
         <div className="max-w-4xl mx-auto space-y-8">
+
+          {/* Your Next Step */}
+          <section className="bg-gradient-to-br from-indigo-950 to-indigo-800 rounded-2xl p-6 text-white">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="text-xl">⚡</span>
+              <h2 className="font-extrabold text-lg">Your Next Step</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-white/10 border border-white/10 rounded-xl p-5">
+                <div className="text-[10px] font-bold uppercase tracking-wide text-indigo-300 mb-2">Highest-Leverage Gap</div>
+                <div className="text-base font-extrabold mb-1">{lowestDim.icon} {lowestDim.label}</div>
+                <div className="text-indigo-300 text-xs mb-4">
+                  Score: {(f[lowestDim.key] as number) ?? 0}/16 — focus here to move your readiness score fastest
+                </div>
+                <div className="bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 mb-4">
+                  <div className="text-[10px] font-bold uppercase tracking-wide text-indigo-400 mb-0.5">Recommended Module</div>
+                  <div className="text-sm font-semibold text-white">{lowestDim.module}</div>
+                </div>
+                <Link href="/educate" className="inline-flex items-center gap-1.5 bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all">
+                  Go to Educate →
+                </Link>
+              </div>
+              {nextMilestone && (
+                <div className="bg-white/10 border border-white/10 rounded-xl p-5">
+                  <div className="text-[10px] font-bold uppercase tracking-wide text-indigo-300 mb-2">Next Milestone</div>
+                  <div className="text-base font-extrabold mb-1">{nextMilestone.icon} {nextMilestone.label}</div>
+                  <div className="text-indigo-300 text-xs mb-4">
+                    Mark it complete below when done — each milestone unlocks the next phase
+                  </div>
+                  <Link
+                    href={["/educate", "/convene", "/access"][nextMilestone.phase - 1]}
+                    className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all"
+                  >
+                    Go to Phase {nextMilestone.phase} →
+                  </Link>
+                </div>
+              )}
+            </div>
+          </section>
 
           {[1, 2, 3].map(phase => {
             const phaseLabels = ["Phase 1: Educate", "Phase 2: Convene", "Phase 3: Access"];

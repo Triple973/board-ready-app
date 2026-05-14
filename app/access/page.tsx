@@ -96,12 +96,6 @@ export default function AccessPage() {
             1:1 coaching, search firm introductions, and your board narrative guide, you move
             from candidate to director.
           </p>
-          <Link
-            href="/profile"
-            className="inline-flex items-center gap-2 bg-indigo-400 hover:bg-indigo-300 text-indigo-950 font-bold px-7 py-3.5 rounded-full shadow-xl transition-all hover:-translate-y-0.5"
-          >
-            Begin with Your Assessment →
-          </Link>
         </div>
       </section>
 
@@ -245,12 +239,6 @@ export default function AccessPage() {
             Start with your assessment and take the first step today.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Link
-              href="/profile"
-              className="inline-flex items-center gap-2 bg-indigo-400 hover:bg-indigo-300 text-indigo-950 font-bold px-8 py-4 rounded-full shadow-xl transition-all hover:-translate-y-0.5 text-lg"
-            >
-              Start Your Free Assessment →
-            </Link>
             <Link
               href="/educate"
               className="inline-flex items-center gap-2 text-indigo-300 bg-white/10 border border-white/20 hover:bg-white/20 font-semibold px-6 py-4 rounded-full transition-all text-sm"

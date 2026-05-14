@@ -41,6 +41,17 @@ export default function Navbar() {
         >
           Overview
         </Link>
+        <Link
+          href="/dashboard"
+          className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold border-b-2 transition-all whitespace-nowrap ${
+            path === "/dashboard"
+              ? "border-indigo-300 text-white"
+              : "border-transparent text-indigo-400 hover:text-indigo-200"
+          }`}
+        >
+          <span>📊</span>
+          <span>Dashboard</span>
+        </Link>
         {TABS.map((t) => {
           const active = path.startsWith(t.href);
           return (

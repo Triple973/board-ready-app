@@ -72,12 +72,6 @@ export default function ConvenePage() {
             Phase 2 puts you in the room with the directors, search partners, and peers who
             shape board composition at the world&apos;s leading companies.
           </p>
-          <Link
-            href="/profile"
-            className="inline-flex items-center gap-2 bg-indigo-400 hover:bg-indigo-300 text-indigo-950 font-bold px-7 py-3.5 rounded-full shadow-xl transition-all hover:-translate-y-0.5"
-          >
-            Start with Your Assessment →
-          </Link>
         </div>
       </section>
 
@@ -197,15 +191,9 @@ export default function ConvenePage() {
       <section className="bg-gradient-to-r from-indigo-950 to-indigo-800 px-6 py-14 text-center">
         <h2 className="text-2xl font-extrabold text-white mb-3">The Network Is the Path</h2>
         <p className="text-indigo-300 mb-6 max-w-md mx-auto text-sm">
-          Start with your Board Readiness Assessment to unlock personalized convening recommendations tailored to your gaps and goals.
+          The right relationships accelerate everything. Phase 3 converts your network into an actual board seat.
         </p>
         <div className="flex flex-wrap gap-3 justify-center">
-          <Link
-            href="/profile"
-            className="inline-flex items-center gap-2 bg-indigo-400 hover:bg-indigo-300 text-indigo-950 font-bold px-8 py-4 rounded-full shadow-xl transition-all hover:-translate-y-0.5"
-          >
-            Take the Assessment →
-          </Link>
           <Link
             href="/access"
             className="inline-flex items-center gap-2 text-indigo-300 bg-white/10 border border-white/20 hover:bg-white/20 font-semibold px-6 py-4 rounded-full transition-all text-sm"
