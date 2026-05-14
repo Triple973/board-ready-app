@@ -8,6 +8,7 @@ import Breddy from "./Breddy";
 // APIs (sessionStorage, SpeechRecognition, SpeechSynthesis) used inside Breddy.
 export default function BreddyLoader() {
   const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
   return <Breddy />;

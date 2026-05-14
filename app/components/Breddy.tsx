@@ -86,6 +86,7 @@ export default function Breddy() {
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
   const transcriptRef = useRef("");
   // Keep a ref to sendMessage so toggleRecording can always call the latest version
@@ -119,6 +120,7 @@ export default function Breddy() {
   useEffect(() => {
     setSpeechSupported(
       typeof window !== "undefined" &&
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       !!((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)
     );
   }, []);
@@ -209,6 +211,7 @@ export default function Breddy() {
     window.speechSynthesis?.cancel();
     setIsSpeaking(false);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SR) return;
 
@@ -217,8 +220,11 @@ export default function Breddy() {
     recognition.interimResults = true;
     recognition.lang = "en-US";
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     recognition.onresult = (e: any) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const transcript = Array.from(e.results as any[])
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .map((r: any) => r[0].transcript)
         .join("");
       transcriptRef.current = transcript;
@@ -314,7 +320,7 @@ export default function Breddy() {
               {isRecording ? (
                 <>
                   <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse flex-shrink-0" />
-                  Listening — speak now, I'll send automatically
+                  Listening — speak now, I&apos;ll send automatically
                 </>
               ) : (
                 <>

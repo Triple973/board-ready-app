@@ -132,6 +132,7 @@ function ParticipantDrawer({
     setTouchpoints(await res.json());
   }, [participant.id]);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { loadTouchpoints(); }, [loadTouchpoints]);
 
   async function saveNotes() {
@@ -355,6 +356,7 @@ export default function AdminPage() {
     setLoading(false);
   }, []);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { if (authed) fetchAll(); }, [authed, fetchAll]);
 
   function updateParticipant(id: string, fields: Record<string, unknown>) {
