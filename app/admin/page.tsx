@@ -178,7 +178,7 @@ function ParticipantDrawer({
             <div>
               <div className="text-white font-extrabold text-lg">{f["Participant Name"] as string}</div>
               <div className="text-indigo-300 text-sm">{f["Current Title"] as string}{company ? ` · ${company}` : ""}</div>
-              {f["Email"] && <div className="text-indigo-400 text-xs mt-0.5">{f["Email"] as string}</div>}
+              {!!f["Email"] && <div className="text-indigo-400 text-xs mt-0.5">{f["Email"] as string}</div>}
             </div>
             <button onClick={onClose} className="text-indigo-300 hover:text-white text-xl mt-1">✕</button>
           </div>
@@ -255,7 +255,7 @@ function ParticipantDrawer({
               </div>
 
               {/* Profile info */}
-              {f["Notes"] && (
+              {!!f["Notes"] && (
                 <div>
                   <div className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Profile</div>
                   <div className="bg-slate-50 rounded-xl p-4 text-xs text-gray-600 leading-relaxed whitespace-pre-line">
@@ -281,19 +281,19 @@ function ParticipantDrawer({
                           </span>
                           <span className="text-xs text-gray-400">{tf["Date"] as string}</span>
                         </div>
-                        {tf["Notes"] && <p className="text-sm text-gray-700 leading-relaxed">{tf["Notes"] as string}</p>}
-                        {tf["Action Item"] && (
+                        {!!tf["Notes"] && <p className="text-sm text-gray-700 leading-relaxed">{tf["Notes"] as string}</p>}
+                        {!!tf["Action Item"] && (
                           <div className="mt-2 flex items-start gap-1.5">
                             <span className="text-indigo-500 text-xs mt-0.5">→</span>
                             <span className="text-xs font-semibold text-gray-700">{tf["Action Item"] as string}</span>
                           </div>
                         )}
-                        {tf["Follow Up Date"] && (
+                        {!!tf["Follow Up Date"] && (
                           <div className="mt-1.5 text-[11px] text-amber-600 font-semibold">
                             📅 Follow up: {tf["Follow Up Date"] as string}
                           </div>
                         )}
-                        {tf["Logged By"] && (
+                        {!!tf["Logged By"] && (
                           <div className="mt-1.5 text-[11px] text-gray-400">Logged by {tf["Logged By"] as string}</div>
                         )}
                       </div>
